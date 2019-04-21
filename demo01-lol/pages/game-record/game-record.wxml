@@ -1,0 +1,5 @@
+<view class="container record-lists">
+<block wx:for="{{records}}">
+<text>{{item.legend}} {{item.bunko}} {{item.details}} {{item.time}}</text>
+</block>
+</view>

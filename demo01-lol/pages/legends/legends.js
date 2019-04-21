@@ -1,0 +1,31 @@
+Page({
+    data:{
+        legends:[
+            {
+                name:'皎月',
+                title:'AP',
+                src:'//ossweb-img.qq.com/images/lol/web201310/skin/small131011.jpg'
+            },
+            {
+                name:'娜美',
+                title:'辅助',
+                src:'//ossweb-img.qq.com/images/lol/web201310/skin/small267008.jpg'
+            },
+            {
+                name:'男刀',
+                title:'刺客',
+                src:'//ossweb-img.qq.com/images/lol/web201310/skin/small91012.jpg'
+            },
+            {
+                name:'卡莎',
+                title:'ADC',
+                src:'//ossweb-img.qq.com/images/lol/web201310/skin/small145000.jpg'
+            },
+            {
+                name:'努努',
+                title:'坦克',
+                src:'//ossweb-img.qq.com/images/lol/web201310/skin/small20008.jpg'
+            }
+        ]
+    }
+})
