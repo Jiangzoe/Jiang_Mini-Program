@@ -1,0 +1,38 @@
+{
+  "pages": [
+    "pages/main/main",
+    "pages/lesson/lesson",
+    "pages/mine/mine"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#008B8B",
+    "navigationBarTitleText": "一只酱",
+    "navigationBarTextStyle": "white"
+  },
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "color": "#000",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/main/main",
+        "text": "首页",
+        "iconPath":"images/shouye.png",
+        "selectedIconPath":"images/hover-shouye.png"
+      },
+      {
+        "pagePath": "pages/lesson/lesson",
+        "text": "课程",
+        "iconPath": "images/class.png",
+        "selectedIconPath": "images/hover-class.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "images/mine.png",
+        "selectedIconPath": "images/hover-mine.png"
+      }
+    ]
+  }
+}
