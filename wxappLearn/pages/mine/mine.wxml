@@ -1,5 +1,0 @@
-<view wx:for="{{people}}" wx:key="{{index}}">
-    <ul>
-        <li>{{item.name}}</li>
-    </ul>
-</view>
