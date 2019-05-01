@@ -1,0 +1,36 @@
+<view class="container">
+    <view class="section">
+        <view class="nav-me">
+            <image src="../../assets/images/nav-me.png" />
+        </view>
+        <scroll-view scroll-x="true" class="nav" scroll-left="{{scrollLeft}}" scroll-width-animation="{{true}}">
+            <block wx:for="{{navData}}" wx:for-index="id" wx:for-item="navItem" wx:key="index">
+                <view class="nav-item {{currentTab == id ? 'active' : ''}}" data-name="{{navItem.name}}" data-current="{{id}}" bindtap="switchNav">
+                    {{navItem.name}}
+                </view>
+            </block>
+        </scroll-view>
+        <navigator url="/pages/carts/carts">
+            <view class="nav-all">
+                <image src="../../assets/images/nav-all.png" />
+            </view>
+        </navigator>
+    </view>
+    <!-- 叫车 -->
+    <view class="content">
+        <view class="didi-time">{{waitingTimes}}</view>
+        <import src="/templates/loading.wxml" />
+        <template is="loading" data="{{isLoading}}"></template>
+        <view class="circle-str"></view>
+        <navigator url="/pages/destination/destination">
+      <view class="didi-input-str">{{address}}</view>
+    </navigator>
+    <navigator url="">
+      <input type="text" class="didi-input-end" placeholder="你要去哪里"
+      value='{{destination}}'
+      />
+    </navigator>
+        <view class="circle-end"></view>
+        <button class="didi-btn" wx:if="{{!callCart}}" bindtap="toCallCart">呼叫{{cart}}</button>
+    </view>
+</view>

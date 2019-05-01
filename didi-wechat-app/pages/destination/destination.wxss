@@ -1,0 +1,13 @@
+/* pages/destination/destination.wxss */
+.content-image{
+    width: 80rpx;
+    height: 119rpx;
+    line-height: 119rpx;
+    text-align: center;
+}
+.content-image image{
+    width: 20rpx;
+    height: 20rpx;
+    opacity: .3;
+    color: #999999;
+}
