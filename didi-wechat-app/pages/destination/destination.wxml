@@ -1,3 +1,4 @@
+<!--pages/destination/destination.wxml-->
 <view class="container">
   <view class="location">
     <view class="location-city">
@@ -5,7 +6,7 @@
     </view>
     <input type="text" class="location-input" 
     value="{{value}}" bindinput="searchInput"
-    placeholder="你在哪上车" />
+    placeholder="你要去哪里" />
     <navigator url="/pages/index/index">
     <view class="location-cancel">
       取消

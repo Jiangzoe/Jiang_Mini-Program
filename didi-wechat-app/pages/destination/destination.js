@@ -1,6 +1,5 @@
 // pages/destination/destination.js
-const app = getApp();
-
+const app = getApp()
 Page({
 
   /**
@@ -65,6 +64,33 @@ Page({
   onShareAppMessage: function () {
 
   },
+  toIndex(e) {
+    // 地址简写
+    const destination = e.currentTarget.dataset.destination;
+    // 详细地址
+    const endAddress = e.currentTarget.dataset.end;
+    app.globalData.destination = destination;
+    console.log(endAddress)
+    // 得到经纬度
+    app.globalData.qqmapsdk.geocoder({
+      address: endAddress,
+      success: (res) => {
+        console.log('得到经纬度', res);
+        app.globalData.endLatitude = res.result.location.lat;
+        app.globalData.endLongitude = res.result.location.lng;
+        wx.navigateTo({
+          url: '../index/index',
+        })
+      },
+      fail: () => {
+        wx.showToast({
+          title: '选择地址中请包含城市名称',
+          icon: 'none'
+        })
+      }
+    })
+
+  },
   searchInput(e) {
     const value = e.detail.value;
     app.globalData.qqmapsdk.getSuggestion({
@@ -76,5 +102,5 @@ Page({
         })
       }
     })
-  }
+  },
 })

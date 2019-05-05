@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/destination/destination"
+    "pages/destination/destination",
+    "pages/wait/wait"
   ],
   "window": {
     "backgroundTextStyle": "light",
