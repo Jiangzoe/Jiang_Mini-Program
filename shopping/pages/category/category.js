@@ -15,32 +15,58 @@ Page({
     ],
     curIndex: 0,
     toView: 'guowei',
-    isScrocll: false
+    isScroll: false,
+    heightArr: [],
+    lastActive: 0,
+    conHeight: 0
   },
   switchTab(e) {
-    // console.log(e)
     this.setData({
-      toView: e.target.dataset.id,
-      curIndex: e.target.dataset.index
+      curIndex: e.target.dataset.index,
+      toView: e.target.dataset.id
     })
   },
-  scrollHandle(e) {
+  switchContent(e) {
+    let _this = this
     console.log(e)
-    var scrollTop = e.detail.scrollTop
-    if(scrollTop>0){
-      
+    const scrollTop = e.detail.scrollTop;
+    const scorllArr = this.data.heightArr;
+    if (scrollTop >= scorllArr[scorllArr.length - 1] - (_this.data.conHeight / 2)) {
+      return;
+    } else {
+      for (let i = 0; i < scorllArr.length; i++) {
+        if (scrollTop >= 0 && scrollTop < scorllArr[0]) {
+          if (0 != _this.data.lastActive) {
+            _this.setData({
+              curIndex: 0,
+              lastActive: 0,
+            })
+          }
+        } else if (scrollTop >= scorllArr[i - 1] - 100 && scrollTop < scorllArr[i]) {
+          if (i != _this.data.lastActive) {
+            console.log(i)
+            _this.setData({
+              curIndex: i,
+              lastActive: i,
+            })
+          }
+
+        }
+      }
     }
+
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let self = this
-    wx.request({
-      url: 'http://www.gdfengshuo.com/api/wx/cate-detail.txt',
-      success(res) {
-        self.setData({
-          detail: res.data
+    let _this = this
+    wx.getSystemInfo({
+      success: function (res) {
+        let windowHeight = (res.windowHeight * (750 / res.windowWidth));
+        //console.log(windowHeight) //最后获得转化后得rpx单位的窗口高度
+        _this.setData({
+          conHeight: windowHeight,
         })
       }
     })
@@ -50,7 +76,34 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    wx.request({
+      url: 'http://www.gdfengshuo.com/api/wx/cate-detail.txt',
+      success: (res) => {
+        // console.log(res)
+        this.setData({
+          detail: res.data
+        })
+        let _this = this
+        let heightArr = [];
+        let h = 0;
+        //创建节点选择器
+        const query = wx.createSelectorQuery();
+        //选择id
+        query.selectAll('.cate-box').boundingClientRect()
+        query.exec(function (res) {
+          console.log(res)
+          //res就是 所有标签为cate-box的元素的信息 的数组
+          res[0].forEach((item) => {
+            h += item.height;
+            heightArr.push(h);
+          })
+          _this.setData({
+            heightArr: heightArr
+          })
+          console.log(_this.data.heightArr)
+        })
+      }
+    })
   },
 
   /**
