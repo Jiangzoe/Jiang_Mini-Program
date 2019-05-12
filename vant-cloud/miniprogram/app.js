@@ -10,7 +10,6 @@ App({
         env: 'jiang-aodke'
       })
     }
-
     this.globalData.shareParam = options.query
     // 查询是否授权
     wx.getSetting({
