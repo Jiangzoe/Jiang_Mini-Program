@@ -1,0 +1,5 @@
+<view class="feed">
+    <image class="avatar" src="{{item.actor.avatar_url}} ? s=50 " mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload="">
+        
+    </image>
+</view>
