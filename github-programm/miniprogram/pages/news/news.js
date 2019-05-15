@@ -1,5 +1,6 @@
 // miniprogram/pages/news/news.js
 const github = require('../../api/github.js');
+let nextFunc = null;
 Page({
 
   /**
@@ -14,16 +15,27 @@ Page({
       this.setData({
         events:data
       })
+      nextFunc = next;
     }
     const errorHandle = () => {
       wx.stopPullDownRefresh();
     }
+    // 拿数据
     github.events().get().then(
       successHandle
     )
     .catch(
       errorHandle
     )
+  },
+  // 加载更多数据
+  loadMoreActivities(){
+    // 加载更多数据的方法
+    if(nextFunc){
+      nextFunc().then(({data,next}) => {
+        nextFunc = next;
+      })
+    }
   },
 
   /**
@@ -72,7 +84,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.loadMoreActivities();
   },
 
   /**

@@ -1,4 +1,4 @@
-
+const pageAble = require('./pageAble.js');
 const trendings = (data) => {
   return new Promise((resolve, reject) => {
     wx.request({
@@ -22,7 +22,7 @@ const events = () => {
           success:res =>{
             reslove({
               data:res.data,
-              next:null
+              headers:res.header
             });
           },
           fail:error =>{
@@ -30,7 +30,7 @@ const events = () => {
           }
         })
       })
-      return promise;
+      return pageAble.wrap(promise);
     }
   }
 }
